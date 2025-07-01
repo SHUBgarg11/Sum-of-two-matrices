@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>C Programs Archive</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e6f0ff;
+      color: #001f3f;
+    }
+    header {
+      background-color: #007acc;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    .search-bar {
+      text-align: center;
+      margin: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 60%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .buttons {
+      text-align: center;
+      margin: 20px;
+    }
+    .buttons button {
+      margin: 5px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .buttons button:hover {
+      background-color: #0056b3;
+    }
+    .results {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10px 20px;
+    }
+    .program {
+      background: white;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>C Programs Hub</h1>
+    <p>Search or browse C programs by category</p>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="searchBox" placeholder="Search for a C program..." onkeyup="filterPrograms()" />
+  </div>
+
+  <div class="buttons">
+    <button onclick="filterCategory('Array')">Array</button>
+    <button onclick="filterCategory('String')">String</button>
+    <button onclick="filterCategory('Function')">Function</button>
+    <button onclick="filterCategory('Loop')">Loop</button>
+    <button onclick="showAll()">Show All</button>
+  </div>
+
+  <div class="results" id="programList">
+    <div class="program" data-category="Array">
+      <h3>Array: Sum of Elements</h3>
+      <pre>#include &lt;stdio.h&gt;
+int main() {
+  int arr[] = {1, 2, 3, 4};
+  int sum = 0;
+  for(int i = 0; i &lt; 4; i++) sum += arr[i];
+  printf("Sum = %d", sum);
+  return 0;
+}</pre>
+    </div>
+
+    <div class="program" data-category="String">
+      <h3>String: Count Characters</h3>
+      <pre>#include &lt;stdio.h&gt;
+int main() {
+  char str[] = "Hello";
+  int i = 0;
+  while(str[i] != '\0') i++;
+  printf("Length = %d", i);
+  return 0;
+}</pre>
+    </div>
+
+    <div class="program" data-category="Function">
+      <h3>Function: Add Two Numbers</h3>
+      <pre>#include &lt;stdio.h&gt;
+int add(int a, int b) { return a + b; }
+int main() {
+  printf("%d", add(5, 3));
+  return 0;
+}</pre>
+    </div>
+
+    <div class="program" data-category="Loop">
+      <h3>Loop: Print Numbers 1 to 10</h3>
+      <pre>#include &lt;stdio.h&gt;
+int main() {
+  for(int i = 1; i &lt;= 10; i++) printf("%d\n", i);
+  return 0;
+}</pre>
+    </div>
+  </div>
+
+  <script>
+    function filterPrograms() {
+      const input = document.getElementById("searchBox").value.toLowerCase();
+      const programs = document.querySelectorAll(".program");
+      programs.forEach(p => {
+        const text = p.innerText.toLowerCase();
+        p.style.display = text.includes(input) ? "block" : "none";
+      });
+    }
+
+    function filterCategory(category) {
+      const programs = document.querySelectorAll(".program");
+      programs.forEach(p => {
+        p.style.display = p.dataset.category === category ? "block" : "none";
+      });
+    }
+
+    function showAll() {
+      document.querySelectorAll(".program").forEach(p => p.style.display = "block");
+    }
+  </script>
+</body>
+</html
